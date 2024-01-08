@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  sparse4d:
+    image: sparse4d
+    build:
+        context: .
+        dockerfile: ./docker/dockerfile
+
+    volumes:
+      - ../../data:/sparse4d/data
+      - ../Sparse4D:/sparse4d/
+    shm_size: 8g
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+            
+    environment:
+      - CUDA_VISIBLE_DEVICES=0  # Set GPU ID here
+#      - SPARSE4D_MODE=data_prep # Starting Data
+#      - SPARSE4D_MODE=train     # Starting Training
+#      - SPARSE4D_MODE=test      # Starting Testing
+      - SPARSE4D_MODE=bash      # Opening bash shell
