@@ -1,3 +1,9 @@
 *.pyc
 *.npy
 *.pth
+work_dirs
+nuscenes_infos_trainval_with_inds.pkl
+
+projects/mmdet3d_plugin/ops/build/
+projects/mmdet3d_plugin/ops/deformable_aggregation_ext.cpython-37m-x86_64-linux-gnu.so
+projects/mmdet3d_plugin/ops/deformable_aggregation_ext.egg-info/

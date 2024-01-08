@@ -1,3 +1,56 @@
+# Sparse4D Docker
+
+This repository provides Docker support for Sparse4D, complete with Dockerfiles and necessary modifications for seamless integration.
+
+## Project Structure
+
+The expected folder structure for this setup is as follows:
+
+```plaintext
+Workspace/
+│
+├── data/             # Data directory
+│   ├── nuscenes/     # Example dataset
+│   ├── ...           # Other data folders
+│
+└── Sparse4D/         # Sparse4D source code
+    ├── ...
+    ├── docker/
+    ├── docker-compose.yml
+    ├── ...
+```
+
+You can modify the paths as needed in the `./docker-compose.yml` file.
+
+## Usage
+
+The Docker Compose file is designed to support multiple modes of operation, such as data preparation, training, testing, or launching an interactive bash shell. 
+
+To get started, run the following command in your terminal:
+
+```shell
+SPARSE4D_MODE=bash docker-compose up
+```
+
+### Setting Modes
+
+You can change the operation mode by modifying the `SPARSE4D_MODE` environment variable. Available modes include:
+
+- `train`:     For training models.
+- `test`:      For testing models.
+- `data_prep`: For preparing data.
+- `bash`:      To launch an interactive bash shell.
+
+For detailed mode configurations, refer to `./docker/entrypoint.sh`.
+
+## Known Issues
+
+### Single GPU Usage under WSL
+
+- The pre-installed NCCL (NVIDIA Collective Communications Library) version is not supported under Windows Subsystem for Linux (WSL). As a result, only single GPU usage is feasible.
+- A potential workaround is to rebuild PyTorch with a newer NCCL version (greater than 2.10) to resolve this issue.
+
+
 # Sparse4D
 **【2023/11/21】 The paper of [Sparse4Dv3](https://arxiv.org/abs/2311.11722) has been published.**
 
